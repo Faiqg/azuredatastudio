@@ -300,9 +300,6 @@ export abstract class ContainerBase<T, TPropertyBag extends azdata.ComponentProp
 	/// IComponent container-related implementation
 	public addToContainer(componentDescriptor: IComponentDescriptor, config: any, index?: number): void {
 		this.logService.debug(`Adding component ${componentDescriptor.id} to container ${this.descriptor.id}`);
-		if (!componentDescriptor) {
-			return;
-		}
 		if (this.items.some(item => item.descriptor.id === componentDescriptor.id && item.descriptor.type === componentDescriptor.type)) {
 			return;
 		}
@@ -330,9 +327,6 @@ export abstract class ContainerBase<T, TPropertyBag extends azdata.ComponentProp
 	}
 
 	public removeFromContainer(componentDescriptor: IComponentDescriptor): boolean {
-		if (!componentDescriptor) {
-			return false;
-		}
 		let index = this.items.findIndex(item => item.descriptor.id === componentDescriptor.id && item.descriptor.type === componentDescriptor.type);
 		if (index >= 0) {
 			this.items.splice(index, 1);

@@ -280,7 +280,11 @@ export default class DeclarativeTableComponent extends ContainerBase<any, azdata
 			this.data?.forEach(row => {
 				for (let i = 0; i < row.length; i++) {
 					if (this.isComponent(i)) {
-						this.addToContainer(this.getItemDescriptor(row[i].value as string), undefined);
+						const itemDescriptor = this.getItemDescriptor(row[i].value as string);
+						if (itemDescriptor) {
+							this.addToContainer(itemDescriptor, {});
+						}
+
 					}
 				}
 			});
